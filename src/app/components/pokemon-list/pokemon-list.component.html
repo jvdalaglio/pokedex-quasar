@@ -1,1 +1,6 @@
-<p>Work!</p>
+@for(pokemon of pokemons; track pokemon.id){
+<div class="grid grid-cols-3">
+  <div class="col-span-2 bg-green">{{ pokemon.name }}</div>
+  <div class="bg-fairy"></div>
+</div>
+}
