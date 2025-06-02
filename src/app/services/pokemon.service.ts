@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, forkJoin, switchMap } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { forkJoin, Observable, switchMap } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface Pokemon {
   name: string;
@@ -26,9 +27,8 @@ export interface PokemonDetails {
   providedIn: 'root',
 })
 export class PokemonService {
-  private apiUrl = 'https://pokeapi.co/api/v2';
-
-  constructor(private http: HttpClient) {}
+  private http: HttpClient = inject(HttpClient);
+  private apiUrl = environment.apiUrl;
 
   getDetailedPokemons(
     limit?: number,
