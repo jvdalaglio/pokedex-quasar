@@ -10,7 +10,7 @@
       {{ capitalizeFirstLetter(pokemon.name) }}
     </p>
     <div class="flex gap-2">
-      @for(type of pokemon.types; track type.name) {
+      @for(type of pokemon.types; track $index) {
       <app-badge [type]="type.type.name"></app-badge>
       }
     </div>
@@ -31,10 +31,10 @@
       <i
         class="pi w-1/2 text-white"
         [ngClass]="{
-          'pi-heart': !favoriteIds.has(pokemon.id),
-          'pi-heart-fill': favoriteIds.has(pokemon.id)
+          'pi-heart': !isFavorite(pokemon.id),
+          'pi-heart-fill': isFavorite(pokemon.id)
         }"
-        [ngStyle]="{ color: favoriteIds.has(pokemon.id) ? 'red' : 'white' }"
+        [ngStyle]="{ color: isFavorite(pokemon.id) ? 'red' : 'white' }"
       ></i>
     </div>
   </div>

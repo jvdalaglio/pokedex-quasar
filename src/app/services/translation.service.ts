@@ -25,8 +25,6 @@ export class TranslationService {
     fairy: 'Fada',
   };
 
-  constructor() {}
-
   getTypeTranslation(type: string): string {
     return this.pokemonTypes[type.toLowerCase()] || type;
   }

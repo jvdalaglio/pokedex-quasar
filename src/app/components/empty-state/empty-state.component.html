@@ -1,0 +1,12 @@
+<div class="col-span-full text-center py-10">
+  @if (type === 'favorites') {
+  <p class="text-lg text-gray-600">Você ainda não tem Pokémon favoritos.</p>
+  <p class="mt-2">Clique no coração nos cards para adicionar aos favoritos!</p>
+  } @else if (type === 'search') {
+  <p class="text-lg text-gray-600">
+    Nenhum Pokémon encontrado para "{{ searchTerm }}".
+  </p>
+  } @else {
+  <p class="text-lg text-gray-600">Carregando Pokémons...</p>
+  }
+</div>

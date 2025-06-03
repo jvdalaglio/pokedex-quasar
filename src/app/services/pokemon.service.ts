@@ -23,7 +23,6 @@ export interface IPokemonDetailsDTO {
   stats: any;
 }
 
-// Nova interface para o tipo de retorno desejado
 export interface IPokemonListWithDetails {
   count: number;
   next: string | null;

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { IPokemonDetailsDTO } from '../../services/pokemon.service';
+import { StateService } from '../../services/state.service';
 import { BadgeComponent } from '../badge/badge.component';
 
 @Component({
@@ -11,14 +12,15 @@ import { BadgeComponent } from '../badge/badge.component';
 })
 export class PokemonCardComponent {
   @Input() pokemon!: IPokemonDetailsDTO;
-  public favoriteIds = new Set<number>();
+
+  private stateService = inject(StateService);
 
   public toggleFavorite(pokemonId: number): void {
-    if (this.favoriteIds.has(pokemonId)) {
-      this.favoriteIds.delete(pokemonId);
-    } else {
-      this.favoriteIds.add(pokemonId);
-    }
+    this.stateService.toggleFavorite(pokemonId);
+  }
+
+  public isFavorite(pokemonId: number): boolean {
+    return this.stateService.isFavorite(pokemonId)();
   }
 
   public capitalizeFirstLetter(str: string): string {

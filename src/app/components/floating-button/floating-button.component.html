@@ -1,0 +1,13 @@
+<!-- Botão flutuante para alternar entre abas -->
+<div class="fixed bottom-4 left-1/2 transform z-10">
+  <button
+    (click)="toggleTab()"
+    class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300"
+  >
+    <i
+      class="pi"
+      [ngClass]="stateService.currentTab() === 'main' ? 'pi-heart' : 'pi-list'"
+    ></i>
+    {{ tabButtonText }}
+  </button>
+</div>
