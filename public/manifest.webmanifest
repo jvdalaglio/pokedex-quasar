@@ -1,6 +1,8 @@
 {
-  "name": "quasar-pokedex",
-  "short_name": "quasar-pokedex",
+  "name": "Pokédex App",
+  "short_name": "Pokédex",
+  "theme_color": "#dc2626",
+  "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

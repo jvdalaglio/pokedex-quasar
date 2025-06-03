@@ -34,27 +34,21 @@ export class PokemonListComponent implements OnInit {
   public filteredPokemons: IPokemonDetailsDTO[] = [];
   public paginatedPokemons: IPokemonDetailsDTO[] = [];
 
-  // Search
   public searchTerm: string = '';
 
-  // Pagination
   public currentPage: number = 1;
   public pageSize: number = 12;
   public totalPages: number = 1;
   public isLoading: boolean = true;
 
   constructor() {
-    // Usar effect para reagir às mudanças na aba atual
     effect(() => {
-      // Quando a aba muda, atualize a lista filtrada
       const currentTab = this.stateService.currentTab();
       console.log('Tab changed to:', currentTab);
 
-      // Resetar a página e o termo de busca quando mudar de aba
       this.currentPage = 1;
       this.searchTerm = '';
 
-      // Só atualiza se já tiver carregado os pokemons
       if (this.pokemons.length > 0) {
         this.updateFilteredPokemons();
       }
@@ -63,20 +57,17 @@ export class PokemonListComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.pokemonService
-      .getDetailedPokemons(100) // Aumentando o limite para ter mais Pokémon para paginar
-      .subscribe({
-        next: (data: IPokemonListWithDetails) => {
-          this.pokemons = data.results;
-          this.updateFilteredPokemons();
-          this.isLoading = false;
-          console.log(data);
-        },
-        error: (error) => {
-          console.error('Error fetching Pokemon data:', error);
-          this.isLoading = false;
-        },
-      });
+    this.pokemonService.getDetailedPokemons(151).subscribe({
+      next: (data: IPokemonListWithDetails) => {
+        this.pokemons = data.results;
+        this.updateFilteredPokemons();
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching Pokemon data:', error);
+        this.isLoading = false;
+      },
+    });
   }
 
   public get displayedPokemons(): IPokemonDetailsDTO[] {
