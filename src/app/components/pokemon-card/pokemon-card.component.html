@@ -1,0 +1,41 @@
+<div
+  class="grid grid-cols-3 rounded shadow-lg bg-white w-full max-w-[450px] min-w-[310px] pl-1 sm:pl-2"
+>
+  <div class="col-span-2 bg-green">
+    <strong
+      class="text-sm text-gray-500"
+      >{{ `#${pokemon.id.toString().padStart(3, '0')}` }}</strong
+    >
+    <p class="text-lg font-bold text-gray-800">
+      {{ capitalizeFirstLetter(pokemon.name) }}
+    </p>
+    <div class="flex gap-2">
+      @for(type of pokemon.types; track type.name) {
+      <app-badge [type]="type.type.name"></app-badge>
+      }
+    </div>
+  </div>
+  <div
+    class="rounded h-20 bg-contain bg-no-repeat bg-center flex justify-center items-center bg-origin-content p-2 relative"
+    [ngStyle]="{
+      backgroundImage:
+        'url(/elements/' + pokemon.types[0].type.name.toLowerCase() + '.png)'
+    }"
+    [ngClass]="'bg-' + pokemon.types[0].type.name.toLowerCase()"
+  >
+    <img [src]="pokemon.sprites.front_default" alt="" class="w-3/4" />
+    <div
+      class="absolute top-1 right-1 rounded-full bg-black/10 py-1 px-2 border-1 border-white"
+      (click)="toggleFavorite(pokemon.id)"
+    >
+      <i
+        class="pi w-1/2 text-white"
+        [ngClass]="{
+          'pi-heart': !favoriteIds.has(pokemon.id),
+          'pi-heart-fill': favoriteIds.has(pokemon.id)
+        }"
+        [ngStyle]="{ color: favoriteIds.has(pokemon.id) ? 'red' : 'white' }"
+      ></i>
+    </div>
+  </div>
+</div>

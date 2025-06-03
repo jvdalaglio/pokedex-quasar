@@ -1,0 +1,14 @@
+<div
+  class="flex gap-2 items-center px-1 pr-2 rounded-full max-w-full"
+  [ngClass]="'bg-' + type"
+>
+  <div class="rounded-full bg-white p-1">
+    <img
+      [src]="'/elements/' + type + '.png'"
+      alt="{{ translatedType }}"
+      width="12"
+      height="12"
+    />
+  </div>
+  <p>{{ translatedType }}</p>
+</div>
