@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { InstallPromptComponent } from './components/install-prompt/install-prompt.component';
 import { OfflineIndicatorComponent } from './components/offline-indicator/offline-indicator.component';
+import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PwaService } from './services/pwa.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
     InstallPromptComponent,
     OfflineIndicatorComponent,
     CommonModule,
+    PokemonListComponent,
   ],
   template: `
     <app-offline-indicator></app-offline-indicator>
@@ -36,7 +36,7 @@ import { PwaService } from './services/pwa.service';
     </div>
     }
 
-    <router-outlet></router-outlet>
+    <app-pokemon-list />
     <app-install-prompt></app-install-prompt>
   `,
 })
